@@ -9,4 +9,4 @@ It is much better to work with **dependencies**, meaning passing an object to an
 - [x] add another animal, and make sure it makes a sound. 
 
 
-- [ ] Create a `makeSound` function to each Animal class and remove the giant switch from the Zoo class.
+- [x] Create a `makeSound` function to each Animal class and remove the giant switch from the Zoo class.
