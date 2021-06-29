@@ -6,7 +6,7 @@ It is much better to work with **dependencies**, meaning passing an object to an
 ## mission
 
 
-- add another animal, and make sure it makes a sound. 
+- [x] add another animal, and make sure it makes a sound. 
 
 
-- Create a `makeSound` function to each Animal class and remove the giant switch from the Zoo class.
+- [ ] Create a `makeSound` function to each Animal class and remove the giant switch from the Zoo class.
