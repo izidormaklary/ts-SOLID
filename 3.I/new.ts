@@ -1,13 +1,9 @@
-interface FacebookAuth {
-    setFacebookToken(token: string);
-
-    getFacebookLogin(token: string): boolean;
+interface GoogleAuth {
+    readonly _google: object;
 }
 
-interface GoogleAuth {
-    setGoogleToken(token: string);
-
-    checkGoogleLogin(token: string): boolean;
+interface FacebookAuth {
+    readonly _facebook: object;
 }
 
 interface PassWrdAuth {
@@ -16,29 +12,42 @@ interface PassWrdAuth {
     resetPassword();
 }
 
-class User implements FacebookAuth, GoogleAuth {
+interface TokenManagement {
+    _token: string;
+
+    setToken(token: string): void;
+
+    checkToken(token: string): boolean;
+}
+
+class Google implements TokenManagement {
+    _token;
+
+    setToken(token) {
+        this._token = token;
+    }
+
+    checkToken(token) {
+        return (token === this._token);
+    }
+}
+
+class Facebook implements TokenManagement {
+    _token;
+
+    setToken(token) {
+        this._token = token;
+    }
+
+    checkToken(token) {
+        return (token === this._token);
+    }
+}
+
+class User implements PassWrdAuth, FacebookAuth, GoogleAuth {
     private _password: string = 'user';
-    private _facebookToken: string;
-    private _googleToken: string;
-
-    //Interesting detail here: while I did not define a return type or param type, any deviation from the interface will give you an error.
-    // Test it out by uncommenting the code below.
-    checkGoogleLogin(token) {
-        // return "this will not work";
-        return (token === this._googleToken);
-    }
-
-    setGoogleToken(token: string) {
-        this._googleToken = token;
-    }
-
-    getFacebookLogin(token) {
-        return (token === this._facebookToken);
-    }
-
-    setFacebookToken(token: string) {
-        this._facebookToken = token;
-    }
+    readonly _google: object = new Google();
+    readonly _facebook: object = new Facebook();
 
     checkPassword(password: string): boolean {
         return (password === this._password);
@@ -53,11 +62,9 @@ class User implements FacebookAuth, GoogleAuth {
 class Admin implements PassWrdAuth {
     private _password: string = 'admin';
 
-
     checkPassword(password: string): boolean {
         return (password === this._password);
     }
-
 
     resetPassword() {
         this._password = prompt('What is your new password?');
@@ -65,16 +72,7 @@ class Admin implements PassWrdAuth {
 }
 
 class GoogleBot implements GoogleAuth {
-    private _googleToken: string;
-
-    checkGoogleLogin(token) {
-        return (token === this._googleToken);
-    }
-
-    setGoogleToken(token: string) {
-        this._googleToken = token;
-    }
-
+    readonly _google = new Google();
 }
 
 const passwordElement = <HTMLInputElement>document.querySelector('#password');
@@ -92,13 +90,14 @@ document.querySelector('#login-form').addEventListener('submit', (event) => {
     event.preventDefault();
 
     let user = loginAsAdminElement.checked ? admin
-                                     : bot ? bot
-                                     :       guest;
+        : bot ? bot
+            : guest;
+    console.log(user._facebook)
     if (!loginAsAdminElement.checked) {
         if (user == guest) {
-            user.setFacebookToken('secret_token_fb');
+            user._facebook.setToken('secret_token_fb');
         }
-        user.setGoogleToken('secret_token_google');
+        user._google.setToken('secret_token_google');
 
     }
     console.log(user)
@@ -107,14 +106,14 @@ document.querySelector('#login-form').addEventListener('submit', (event) => {
     let auth = false;
     switch (true) {
         case (typeGoogleElement.checked && user != admin) || user == bot:
-            auth = user.checkGoogleLogin('secret_token_google');
+            auth = user._google.checkToken('secret_token_google');
             break;
         case typePasswordElement.checked:
             auth = user.checkPassword(passwordElement.value);
             break;
         case typeFacebookElement.checked && user != admin:
             debugger;
-            auth = user.getFacebookLogin('secret_token_fb');
+            auth = user._facebook.checkToken('secret_token_fb');
             break;
     }
 
