@@ -1,79 +1,14 @@
-interface GoogleAuth {
-    readonly _google: object;
-}
+import {TokenManagement} from "./interfaces/TokenManagement";
+import {GoogleAuth} from "./interfaces/GoogleAuth";
+import {FacebookAuth} from "./interfaces/FacebookAuth";
+import {PassWrdAuth} from "./interfaces/PassWrdAuth";
 
-interface FacebookAuth {
-    readonly _facebook: object;
-}
+import {Google} from "./classes/Google";
+import {Facebook} from "./classes/Facebook";
 
-interface PassWrdAuth {
-    checkPassword(password: string): boolean;
-
-    resetPassword();
-}
-
-interface TokenManagement {
-    _token: string;
-
-    setToken(token: string): void;
-
-    checkToken(token: string): boolean;
-}
-
-class Google implements TokenManagement {
-    _token;
-
-    setToken(token) {
-        this._token = token;
-    }
-
-    checkToken(token) {
-        return (token === this._token);
-    }
-}
-
-class Facebook implements TokenManagement {
-    _token;
-
-    setToken(token) {
-        this._token = token;
-    }
-
-    checkToken(token) {
-        return (token === this._token);
-    }
-}
-
-class User implements PassWrdAuth, FacebookAuth, GoogleAuth {
-    private _password: string = 'user';
-    readonly _google: object = new Google();
-    readonly _facebook: object = new Facebook();
-
-    checkPassword(password: string): boolean {
-        return (password === this._password);
-    }
-
-    resetPassword() {
-        this._password = prompt('What is your new password?');
-    }
-}
-
-//admin cannot use google or facebook token
-class Admin implements PassWrdAuth {
-    private _password: string = 'admin';
-
-    checkPassword(password: string): boolean {
-        return (password === this._password);
-    }
-
-    resetPassword() {
-        this._password = prompt('What is your new password?');
-    }
-}
-
-class GoogleBot implements GoogleAuth {
-    readonly _google = new Google();
-}
+import {GoogleBot} from "./classes/GoogleBot";
+import {Admin} from "./classes/Admin";
+import {User} from "./classes/User";
 
 const passwordElement = <HTMLInputElement>document.querySelector('#password');
 const typePasswordElement = <HTMLInputElement>document.querySelector('#typePassword');
