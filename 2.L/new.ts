@@ -1,11 +1,4 @@
-interface Discount {
-    readonly _value?: number;
-
-    apply(price: number): number;
-
-    showCalculation(price: number): string;
-
-}
+import {Discount} from "./modules/Discount";
 import {VariableDiscount} from "./modules/VariableDiscount";
 import {FixedDiscount} from "./modules/FixedDiscount";
 import {NoDiscount} from "./modules/NoDiscount";

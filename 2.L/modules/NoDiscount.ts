@@ -1,11 +1,10 @@
+import {Discount} from "./Discount";
 export class NoDiscount implements Discount {
 
     _value = 0;
 
     constructor( ) {
-
         this._value = 0;
-
     }
 
     apply(price) {
@@ -15,5 +14,4 @@ export class NoDiscount implements Discount {
     showCalculation(price) {
         return "No discount";
     }
-
 }

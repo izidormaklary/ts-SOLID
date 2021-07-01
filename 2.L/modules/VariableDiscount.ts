@@ -1,3 +1,4 @@
+import {Discount} from "./Discount";
 export class VariableDiscount implements Discount {
 
     _value;
@@ -18,5 +19,4 @@ export class VariableDiscount implements Discount {
     showCalculation(price) {
         return price + " € -  " + this._value + "%";
     }
-
 }

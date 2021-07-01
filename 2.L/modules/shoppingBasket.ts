@@ -1,3 +1,4 @@
+import {Product} from "./Product";
 export class shoppingBasket {
     //this array only accepts Product objects, nothing else
     private _products: Product[] = [];

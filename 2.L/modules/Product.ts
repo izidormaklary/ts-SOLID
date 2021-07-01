@@ -1,3 +1,4 @@
+import {Discount} from "./Discount";
 export class Product {
     private _name: string;
     private _price: number;

@@ -1,8 +1,10 @@
+import {Discount} from "./Discount";
+
 export class FixedDiscount implements Discount {
 
     _value;
 
-    constructor( value: number = 0) {
+    constructor(value: number = 0) {
 
         this._value = value;
 
@@ -18,5 +20,4 @@ export class FixedDiscount implements Discount {
     showCalculation(price) {
         return price + "€ -  " + this._value + "€ (min 0 €)";
     }
-
 }
