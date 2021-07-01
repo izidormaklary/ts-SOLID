@@ -10,8 +10,8 @@
 
 finishing each one of the exercises
 
-* [x] [Single Responsibility Principle](0.S/readme.md) (not yet with extra) 
+* [x] [Single Responsibility Principle](0.S/readme.md) 
 * [x] [Open–closed principle](1.O/readme.md)
 * [x] [Liskov Substitution Principle](2.L/readme.md)
-* [x] [Interface Segregation Principle](3.I/readme.md) (not yet with extra)
+* [x] [Interface Segregation Principle](3.I/readme.md)
 * [ ] [Dependency Inversion Principle]()

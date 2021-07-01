@@ -1,3 +1,6 @@
+import {Car} from "./Car";
+import {Tank} from "./Tank";
+
 export class Engine {
 
     private _status: boolean = false;
@@ -23,5 +26,12 @@ export class Engine {
 
     turnEngineOff() {
         this._status = false;
+    }
+    drive( car: Car, tank : Tank ) {
+        if(this._status === false ||tank.fuel <= 0) {
+            return;
+        }
+        tank.fuel -= 1;
+        car.miles += this._FUEL_MILEAGE;
     }
 }
