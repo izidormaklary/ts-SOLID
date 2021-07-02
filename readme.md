@@ -14,4 +14,4 @@ finishing each one of the exercises
 * [x] [Open–closed principle](1.O/readme.md)
 * [x] [Liskov Substitution Principle](2.L/readme.md)
 * [x] [Interface Segregation Principle](3.I/readme.md)
-* [ ] [Dependency Inversion Principle]()
+* [x] [Dependency Inversion Principle]()
