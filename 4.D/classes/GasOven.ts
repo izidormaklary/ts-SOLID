@@ -1,6 +1,6 @@
-import {Oven} from "../interfaces/Oven";
-export class GasOven implements Oven{
-    _isOn : boolean;
+import {OvenInterface} from "../interfaces/OvenInterface";
+export class GasOven implements OvenInterface{
+    private _isOn : boolean;
 
     public turnOn() : void
     {

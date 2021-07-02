@@ -1,11 +1,10 @@
-import {Restaurants} from "../interfaces/Restaurants";
-import {Oven} from "../interfaces/Oven";
+import {OvenInterface} from "../interfaces/OvenInterface";
 
-export class Restaurant implements Restaurants{
-    _name : string;
-    _oven;
+export class Restaurant{
+    private _name : string;
+    private _oven?:OvenInterface;
 
-    constructor(name : string, oven:Oven=null) {
+    constructor(name : string, oven:OvenInterface=null) {
         this._name = name;
         this._oven = oven;
     }

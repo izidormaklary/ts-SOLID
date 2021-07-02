@@ -1,5 +1,4 @@
-export interface Oven {
-    _isOn:boolean;
+export interface OvenInterface { // interface (name)
     turnOn():void;
     make(item:string):void;
     turnOff():void;
